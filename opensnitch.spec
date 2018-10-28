@@ -7,7 +7,7 @@
 
 Name: opensnitch
 Version: 1.0.0
-Release: 2%{?dist}
+Release: 3%{?dist}
 Summary: OpenSnitch is a GNU/Linux port of the Little Snitch application firewall
 License: GPLv3
 Group: Applications/Internet
@@ -24,6 +24,14 @@ BuildRequires: protobuf-compiler
 BuildRequires: python3-qt5 
 BuildRequires: python3-pip 
 BuildRequires: libpcap-devel
+BuildRequires: golang-github-matttproud-golang_protobuf_extensions-devel
+BuildRequires: golang-github-fsnotify-fsnotify-devel
+BuildRequires: golang-github-grpc-grpc-go-devel
+BuildRequires: golang-golang-org-net-devel
+BuildRequires: golang-github-golang-sys-devel
+BuildRequires: golang-golangorg-text-devel
+BuildRequires: golang-github-google-go-genproto-devel
+BuildRequires: dep
 
 ExclusiveArch:  %{go_arches}
 
@@ -82,9 +90,9 @@ popd
 export GOPATH="%{_builddir}/.go"
 pushd "$GOPATH/src/opensnitch/daemon"
 # We need some dependencies 
-go get -u github.com/golang/dep/cmd/dep
-go get github.com/golang/protobuf/protoc-gen-go
-python3 -m pip install --user grpcio-tools
+# go get -u github.com/golang/dep/cmd/dep
+# go get github.com/golang/protobuf/protoc-gen-go
+python3 -m pip install --user grpcio grpcio-tools
 
 # We need to said where is our build tools
 export PATH=$PATH:$GOPATH/bin/
@@ -121,6 +129,9 @@ popd
 %{python3_sitelib}/opensnitch_ui-*.egg-info/
 
 %changelog
+
+* Sat Oct 27 2018 Pavlo Rudyi <paulcarroty at riseup dot net> 1.0.0-3
+- Added build deps
 
 * Sat Oct 27 2018 David Va <davidva AT tuta DOT io> 1.0.0-2
 - Updated to 1.0.0-2
