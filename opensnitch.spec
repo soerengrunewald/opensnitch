@@ -1,3 +1,4 @@
+%global debug_package %{nil}
 %global gitdate 20181026
 %global commit0 c10e7a30c8f63c50a13770a3a1df73263a545bb7
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
@@ -32,7 +33,7 @@ OpenSnitch is a GNU/Linux port of the Little Snitch application firewall.
 
 %package daemon
 Summary: OpenSnitch is a GNU/Linux port of the Little Snitch application firewall
-Group: Networking/Other
+Group: Applications/Internet
 
 %description daemon
 OpenSnitch is a GNU/Linux port of the Little Snitch application firewall.
@@ -41,7 +42,7 @@ This package contains opensnitch daemon.
 
 %package ui
 Summary: OpenSnitch is a GNU/Linux port of the Little Snitch application firewall
-Group: Networking/Other
+Group: Applications/Internet
 BuildArch: noarch
 Requires: %{name}-daemon = %{version}-%{release}
 
