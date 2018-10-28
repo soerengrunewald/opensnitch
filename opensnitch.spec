@@ -22,7 +22,7 @@ BuildRequires: git
 BuildRequires: libnetfilter_queue-devel 
 BuildRequires: protobuf-compiler 
 BuildRequires: python3-qt5 python-qt5-devel 
-BuildRequires: python3-pip python3-slugify
+BuildRequires: python3-pip python3-slugify python3-inotify
 BuildRequires: libpcap-devel
 BuildRequires: golang-github-matttproud-golang_protobuf_extensions-devel
 BuildRequires: golang-github-fsnotify-fsnotify-devel
