@@ -21,8 +21,8 @@ BuildRequires: compiler(go-compiler)
 BuildRequires: git
 BuildRequires: libnetfilter_queue-devel 
 BuildRequires: protobuf-compiler 
-BuildRequires: python3-qt5 
-BuildRequires: python3-pip 
+BuildRequires: python3-qt5 python-qt5-devel 
+BuildRequires: python3-pip python3-slugify
 BuildRequires: libpcap-devel
 BuildRequires: golang-github-matttproud-golang_protobuf_extensions-devel
 BuildRequires: golang-github-fsnotify-fsnotify-devel
@@ -32,7 +32,10 @@ BuildRequires: golang-github-golang-sys-devel
 BuildRequires: golang-golangorg-text-devel
 BuildRequires: golang-github-google-go-genproto-devel
 BuildRequires: dep
-
+Requires: python3-qt5
+Requires: python3-dbus
+Requires: python3-inotify python3-slugify
+Requires: libcap
 ExclusiveArch:  %{go_arches}
 
 
@@ -92,6 +95,7 @@ pushd "$GOPATH/src/opensnitch/daemon"
 # We need some dependencies 
 # go get -u github.com/golang/dep/cmd/dep
 # go get github.com/golang/protobuf/protoc-gen-go
+go get github.com/natefinch/pie
 python3 -m pip install --user grpcio grpcio-tools
 
 # We need to said where is our build tools
