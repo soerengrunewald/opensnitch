@@ -117,6 +117,14 @@ pushd "$GOPATH/src/opensnitch/ui"
 python3 -m pip install --isolated --root=%{buildroot} --ignore-installed --no-deps .
 popd
 
+%post
+systemctl enable opensnitchd
+systemctl start opensnitchd 
+
+%postun
+systemctl stop opensnitchd 
+systemctl disable opensnitchd
+
 %files daemon
 %license src/opensnitch/LICENSE 
 %doc src/opensnitch/README.md
