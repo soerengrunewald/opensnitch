@@ -20,7 +20,7 @@ BuildRequires: python3-devel
 BuildRequires: compiler(go-compiler)
 BuildRequires: git
 BuildRequires: libnetfilter_queue-devel 
-BuildRequires: protobuf-compiler 
+BuildRequires: protobuf proprotobuf-compiler protobuf-devel
 BuildRequires: python3-qt5 python-qt5-devel 
 BuildRequires: python3-pip python3-slugify python3-inotify
 BuildRequires: libpcap-devel
@@ -34,7 +34,6 @@ BuildRequires: golang-github-google-go-genproto-devel
 BuildRequires: dep
 Requires: python3-qt5
 Requires: python3-dbus
-Requires: python3-inotify python3-slugify
 Requires: libcap
 ExclusiveArch:  %{go_arches}
 
@@ -114,7 +113,7 @@ mkdir -p %{buildroot}/%{_bindir}
 popd
 # the GUI
 pushd "$GOPATH/src/opensnitch/ui"
-python3 -m pip install --isolated --root=%{buildroot} --ignore-installed --no-deps .
+python3 -m pip install --isolated --root=%{buildroot} grpcio grpcio-tools unicode_slugify==0.1.3 pyinotify==0.9.6 configparser==3.5.0
 popd
 
 %post
